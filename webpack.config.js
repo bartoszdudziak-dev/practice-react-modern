@@ -1,4 +1,4 @@
-const taskNumber = '04';
+const taskNumber = '05';
 // numer przerabianego zadania
 
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -18,6 +18,15 @@ module.exports = {
         filename: 'app.min.js',
         // definiuję nazwę pliku wyjściowego
     },
+
+    devServer: {
+        client: {
+            overlay: {
+                warnings: false,
+            },
+        },
+    },
+
     module: {
         rules: [
             {
@@ -40,7 +49,10 @@ module.exports = {
             filename: 'index.html',
             // określan nazwę dla pliku
         }),
-        new ESLintPlugin(),
+        new ESLintPlugin({
+            emitWarning: true,
+            failOnWarning: false,
+        }),
     ],
 };
 // eksportuję ustawienia dla webpack-a
